@@ -1,7 +1,7 @@
 public class CircularDoublyLinkedList {
     
     // change a Binary tree to circular doubly linked list
-    public Node getCirculaDoublyLinkedListFromBinaryTree(Node root)
+   public Node getCirculaDoublyLinkedListFromBinaryTree(Node root)
     {
         if(root == null){
             return null;
@@ -14,26 +14,33 @@ public class CircularDoublyLinkedList {
         Node left = getCirculaDoublyLinkedListFromBinaryTree(root.left);
         Node right = getCirculaDoublyLinkedListFromBinaryTree(root.right);
         
-        Node temptail;
+        Node node = root;
         if(left != null){
-            temptail = left.left;
-            temptail.right = root;
-            root.left = temptail;
-            
+            node = join(left, root);
         }
         
         if(right != null){
-            root.right = right;
-            temptail = right.left;
-            right.left = root;
-            temptail.right = left;
-            left.left = temptail;
-        }     
-        if(left == null){
-            return root;
-        } else{
-           return left; 
-        }        
+            node = join(root, right);                         
+        } 
+        
+        return node;
+              
+    }
+    
+    public Node join(Node a, Node b){
+        
+        //Node aHead = a;
+        Node aTail = a.left;
+        //Node bHead = b;
+        Node bTail = b.left;
+        
+        aTail.right = b;
+        b.left = aTail;
+        
+        a.left = bTail;
+        bTail.right = a;
+        
+        return a;       
     }
     
     
@@ -44,7 +51,6 @@ public class CircularDoublyLinkedList {
        public Node(int v){
            val = v;
        }
-    }
-    
+    } 
     
 }
