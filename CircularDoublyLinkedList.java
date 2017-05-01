@@ -6,16 +6,17 @@ public class CircularDoublyLinkedList {
         if(root == null){
             return null;
         }
-        if(root.left == null && root.right == null){
-            root.left = root;
-            root.right = root;
-            return root;
-        }
+//         if(root.left == null && root.right == null){           
+//             return root;
+//         }
         Node left = getCirculaDoublyLinkedListFromBinaryTree(root.left);
         Node right = getCirculaDoublyLinkedListFromBinaryTree(root.right);
-        
+       
+        root.left = root;
+        root.right = root;
         Node node = root;
-        if(left != null){
+        
+       if(left != null){
             node = join(left, node);
         }
         
@@ -23,8 +24,7 @@ public class CircularDoublyLinkedList {
             node = join(node, right);                         
         } 
         
-        return node;
-              
+        return node;             
     }
     
     public Node join(Node a, Node b){
@@ -41,8 +41,7 @@ public class CircularDoublyLinkedList {
         bTail.right = a;
         
         return a;       
-    }
-    
+    }   
     
     public class Node{
        int val;
@@ -51,6 +50,5 @@ public class CircularDoublyLinkedList {
        public Node(int v){
            val = v;
        }
-    } 
-    
+    }    
 }
