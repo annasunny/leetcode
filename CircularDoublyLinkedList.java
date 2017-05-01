@@ -16,11 +16,11 @@ public class CircularDoublyLinkedList {
         
         Node node = root;
         if(left != null){
-            node = join(left, root);
+            node = join(left, node);
         }
         
         if(right != null){
-            node = join(root, right);                         
+            node = join(node, right);                         
         } 
         
         return node;
