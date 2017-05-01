@@ -1,6 +1,6 @@
 public class CircularDoublyLinkedList {
     
-    
+    // change a Binary tree to circular doubly linked list
     public Node getCirculaDoublyLinkedListFromBinaryTree(Node root)
     {
         if(root == null){
